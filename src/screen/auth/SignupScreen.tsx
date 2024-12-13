@@ -7,9 +7,10 @@ import TextComponent from '../../components/TextComponent'
 import SpaceComponent from '../../components/SpaceComponent'
 import ButtonCoponent from '../../components/ButtonCoponent'
 import InputComponent from '../../components/InputComponent'
-const LoginScreen = ({navigation}: any) => {
+const SignupScreen = ({navigation}: any) => {
   const [name, setName] = useState('');
   const [passWord, setPassWord] = useState('');
+  const [cofinPassWord, setcofinPassWord] = useState('');
   return (
       <View style= {globalStyles.container}>
         <View
@@ -22,7 +23,7 @@ const LoginScreen = ({navigation}: any) => {
         alignItems: 'center'
         }}>
             <SpaceComponent heigth={60}/>
-            <TextComponent text = {'ĐĂNG NHẬP'} title/>
+            <TextComponent text = {'ĐĂNG KÝ'} title/>
         </View>
         <View style = {{flex: 7, backgroundColor: appColor.white2, opacity: 0.06}}>
         </View>
@@ -51,21 +52,29 @@ const LoginScreen = ({navigation}: any) => {
               value={passWord} 
               onChange={(val) => setPassWord(val)}
             />
-          </View>
-          <SpaceComponent heigth={50}/>
-          <View style ={{flexDirection: 'row',width: 200,justifyContent: 'space-between'}}>
-            <SpaceComponent width={15} />
-            <ButtonCoponent text='Quên mật khẩu?' type='link'/>
+            <SpaceComponent heigth={10}/>
+            <TextComponent text='Nhập Lại mật khẩu'/>
+            <SpaceComponent heigth={10}/>
+            <InputComponent 
+              isPassWord
+              value={cofinPassWord} 
+              onChange={(val) => setcofinPassWord(val)}
+            />
           </View>
           <SpaceComponent heigth={50}/>
           <View style ={{width: 200, alignItems: 'center'}}>
-            <ButtonCoponent text='Đăng nhập' type='primary'/>
+            <ButtonCoponent text='Đăng Ký' type='primary' 
+            onPress={
+              name !== '' && passWord !== '' && cofinPassWord !== ''
+                ? () => navigation.navigate('LoginScreen')
+                : undefined // Không làm gì nếu điều kiện không thỏa
+            }/>
             <SpaceComponent heigth={10}/>
-            <ButtonCoponent text='Đăng ký tài khoản' type='link' onPress={() => navigation.navigate('SignupScreen')}/>
+            <ButtonCoponent text='Đã có tài khoản' type='link' onPress={() => navigation.navigate('LoginScreen')}/>
           </View>
 
         </View>
       </View>
   )
 }
-export default LoginScreen
+export default SignupScreen
