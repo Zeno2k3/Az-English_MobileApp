@@ -59,7 +59,7 @@ const LoginScreen = ({navigation}: any) => {
           </View>
           <SpaceComponent heigth={50}/>
           <View style ={{width: 200, alignItems: 'center'}}>
-            <ButtonCoponent text='Đăng nhập' type='primary'/>
+            <ButtonCoponent text='Đăng nhập' type='primary' onPress={() => navigation.navigate('TabNavigator')}/>
             <SpaceComponent heigth={10}/>
             <ButtonCoponent text='Đăng ký tài khoản' type='link' onPress={() => navigation.navigate('SignupScreen')}/>
           </View>
